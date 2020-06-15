@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ book.name}}{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <img style="height: 400px; width: 100%; display: block;" src="{{ asset('uploads/books/' ~ book.image) }}" alt="Card image">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Name</h5>
+                </div>
+                <div class="col-md-8">
+                    {{ book.name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Author</h5>
+                </div>
+                <div class="col-md-8">
+                    {{ book.author }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Description</h5>
+                </div>
+                <div class="col-md-8">
+                    {{ book.description }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Price</h5>
+                </div>
+                <div class="col-md-8">
+                    <b>{{ book.getUnitPrice() }}</b>
+                </div>
+            </div>
+            {% if (added_qty != 0) %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Already in cart qty</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <b>{{ added_qty }}</b>
+                    </div>
+                </div>
+            {% endif %}
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_start(cart_form) }}
+                    {{ form_widget(cart_form) }}
+                    {{ form_end(cart_form) }}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

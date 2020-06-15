@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Create Book{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_start(book_form) }}
+            {{ form_widget(book_form) }}
+            {{ form_end(book_form) }}
+        </div>
+
+
+    </div>
+
+{% endblock %}

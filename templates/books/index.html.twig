@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}welcome Book Store{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8">
+            Categories: <a href="/">All</a> | <a href="/?category=1">Children</a> | <a href="/?category=2">Fiction</a>
+        </div>
+
+        {% if (cart_item_count != 0) %}
+                <div class="col-md-4">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="/checkout">My Cart <span class="badge badge-danger badge-pill">{{ cart_item_count }}</span></a>
+                            Total : <b>{{ total }}</b>
+
+
+                        </li>
+                    </ul>
+                </div>
+        {% endif %}
+    </div>
+    </br>
+    </br>
+    <div class="row">
+        {% for book in books %}
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <h3 class="card-header">{{ book.name }}</h3>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.author }}</h5>
+                        <h6 class="card-subtitle text-muted">{{ book.getCategoryName() }}</h6>
+                    </div>
+                    <img style="height: 200px; width: 100%; display: block;" src="{{ asset('uploads/books/' ~ book.image) }}" alt="Book Image">
+                    <div class="card-body">
+                        <p class="card-text">{{ book.description }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Price : {{ book.getUnitPrice()}} </li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="book/{{ book.id }}">Add to Cart</a>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
